@@ -1,0 +1,24 @@
+- name: Setup or update development system
+  hosts: development
+  vars_files: development_vault_encrypted.yml
+  become: true
+  vars:
+    ansible_become_pass: "{{ development_host_sudo_password }}"
+
+  tasks:
+    - name: Ensure package git is installed
+      ansible.builtin.apt:
+        name: git
+        state: present
+
+    - name: Ensure package vim is installed
+      become: true
+      ansible.builtin.apt:
+        name: vim
+        state: present
+
+    - name: Ensure package tree is installed
+      become: true
+      ansible.builtin.apt:
+        name: tree
+        state: present
