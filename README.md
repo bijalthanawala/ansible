@@ -6,7 +6,7 @@
 ```
 $ cat inventory_my.ini
 [development]
-java_development ansible_host=192.168.100.100 ansible_user=me_user
+development_host_name ansible_host=192.168.100.100 ansible_user=me_user
 ```
 
 - Create an encrypted vault file with the name _**development_vault_encrypted.yml**_ referenced in this playbook
@@ -14,19 +14,21 @@ java_development ansible_host=192.168.100.100 ansible_user=me_user
   
    ```
    $ ansible-vault create development_vault_encrypted.yml 
-   New Vault password: Enter a memorable_secure_vault_password here
+   New Vault password: any_memorable_secure_vault_password
    Confirm New Vault password: <Repeat the above password>
    ```
 
-  - An editor will open. Create the referenced variable in this playbook. That is:
-   ```
-   development_host_sudo_password: <Enter the sudo password on the target machines>
-   ```
+  - An editor will open. Create the variable _**development_host_sudo_password**_ referenced in this playbook. Save and close the file.
+
+     The example line in the vault file:
+     ```
+      development_host_sudo_password: <Enter the sudo password on the target machines>
+     ```
 
   - Optionally, save the password to the vault in a secure text file:
       ```
-      echo "memorable_secure_vault_password" > vault_password.txt
-      chmod u+rw-x,g-rwx,o-rwx vault_password.txt
+      $ echo "any_memorable_secure_vault_password" > vault_password.txt
+      $ chmod u+rw-x,g-rwx,o-rwx vault_password.txt
       ```
 
 ## Now, run the playbook like so:
