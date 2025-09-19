@@ -7,7 +7,7 @@
 
   tasks:
     - name: Ensure that essential development packages are installed
-      ansible.builtin.apt:
+      ansible.builtin.package:
         name:
           - git
           - vim
