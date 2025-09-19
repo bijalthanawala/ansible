@@ -12,4 +12,5 @@
           - git
           - vim
           - jq
+          - tree
         state: present
