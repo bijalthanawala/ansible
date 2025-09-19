@@ -6,19 +6,10 @@
     ansible_become_pass: "{{ development_host_sudo_password }}"
 
   tasks:
-    - name: Ensure package git is installed
+    - name: Ensure that essential development packages are installed
       ansible.builtin.apt:
-        name: git
-        state: present
-
-    - name: Ensure package vim is installed
-      become: true
-      ansible.builtin.apt:
-        name: vim
-        state: present
-
-    - name: Ensure package tree is installed
-      become: true
-      ansible.builtin.apt:
-        name: tree
+        name:
+          - git
+          - vim
+          - jq
         state: present
