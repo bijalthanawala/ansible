@@ -8,6 +8,7 @@
   tasks:
     - name: Ensure that essential development packages are installed
       ansible.builtin.package:
+        update_cache: true
         name:
           - git
           - vim
