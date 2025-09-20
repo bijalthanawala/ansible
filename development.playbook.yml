@@ -1,3 +1,5 @@
+---
+
 - name: Setup or update development system
   hosts: development
   vars_files: development_vault_encrypted.yml
