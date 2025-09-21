@@ -1,5 +1,9 @@
 # My simple Ansible settings
 
+The purpose of this exercise is to learn ansible while putting it to use in my own homelab.
+
+Git logs will also document my improvement journey as this repo will grow from naive compilation of tasks to adopting known best practices.
+
 ## Following setup required to use this playbook:
 
 - Create an inventory file. An example below:
