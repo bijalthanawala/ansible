@@ -8,9 +8,10 @@ Git logs will also document my improvement journey as this repo will grow from n
 
 - Create an inventory file. An example below:
 ```
-$ cat inventory_my.ini
+$ cat inventory_ansible.ini
 [development]
-development_host_name ansible_host=192.168.100.100 ansible_user=me_user
+development_host_name_1 ansible_host=192.168.100.100 ansible_user=user_one
+development_host_name_2 ansible_host=192.168.100.101 ansible_user=user_two
 ```
 
 - Create an encrypted vault file with the name _**development_vault_encrypted.yml**_ referenced in this playbook
@@ -41,7 +42,7 @@ development_host_name ansible_host=192.168.100.100 ansible_user=me_user
 Use the following command:
 
    ```
-   ansible-playbook -i inventory_my.ini --ask-vault-pass development.playbook.yml 
+   ansible-playbook --ask-vault-pass development.playbook.yml
    ```
    Enter the vault password when prompted.
 
@@ -49,7 +50,5 @@ Use the following command:
 ### Option #2:
 If the vault_password.txt was created like mentioned in the optional setup step above, then use the following command:
 ```
-ansible-playbook -i inventory_my.ini --vault-password-file vault_password.txt development.playbook.yml 
+ansible-playbook --vault-password-file vault_password.txt development.playbook.yml
 ```
-
-
