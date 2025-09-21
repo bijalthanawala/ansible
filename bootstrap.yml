@@ -1,0 +1,9 @@
+- name: prepare new hosts for ansible automation
+  hosts: new
+
+  tasks:
+    - name: copy ssh public key to the host
+      ansible.posix.authorized_key:
+        state: present
+        user: "{{ ansible_user }}"
+        key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa.pub') }}"
