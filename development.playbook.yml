@@ -20,19 +20,26 @@
 
 
 - name: Setup pertinent to proxmox
-  hosts: proxmox
+  hosts: new_proxmox
   vars_files: development_vault_encrypted.yml
   become: true
   vars:
     ansible_become_pass: "{{ development_host_sudo_password }}"
 
   tasks:
-    - name: Install QEMU guest agent
+    - name: Install avahi and QEMU guest agent
       ansible.builtin.package:
         update_cache: true
         name:
+          - avahi
           - qemu-guest-agent
         state: present
+
+    - name: Enable and run avahi
+      ansible.builtin.service:
+        name: avahi-daemon.service
+        enabled: true
+        state: started
 
     - name: Enable and run QEMU guest agent
       ansible.builtin.service:
