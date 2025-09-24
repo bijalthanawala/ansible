@@ -1,9 +1,32 @@
 - name: prepare new hosts for ansible automation
   hosts: new
+  user: "{{ boot_user }}"
+  become: true
+
 
   tasks:
+    - name: create user 'ansible'
+      ansible.builtin.user:
+        name: ansible
+        state: present
+        create_home: true
+
+    - name: Add user 'ansible' to the sudo group
+      ansible.builtin.user:
+        name: ansible
+        groups: sudo
+        append: true
+      when: ansible_os_family == "Debian"
+
+    - name: Add user 'ansible' to the wheel group
+      ansible.builtin.user:
+        name: ansible
+        groups: wheel
+        append: true
+      when: ansible_os_family == "RedHat"
+
     - name: copy ssh public key to the host
       ansible.posix.authorized_key:
         state: present
-        user: "{{ ansible_user }}"
+        user: ansible
         key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa.pub') }}"
