@@ -16,6 +16,7 @@
           - vim
           - jq
           - tree
+          - bc
         state: present
 
 
