@@ -1,6 +1,8 @@
+---
+
 - name: prepare new hosts for ansible automation
-  hosts: new
-  user: "{{ boot_user }}"
+  hosts: bootstrap
+  vars_files: bootstrap_vault_encrypted.yml
   become: true
 
 
