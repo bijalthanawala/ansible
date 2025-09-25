@@ -37,6 +37,8 @@
 
     - name: Get the service facts
       ansible.builtin.service_facts:
+      when: ansible_os_family == "RedHat"
+
 
     - block:
       - name: Install python3 firewall library on Redhat system
@@ -54,7 +56,15 @@
         'firewalld' in ansible_facts.packages and
         ansible_facts.services['firewalld.service'].state == "running"
 
+    - name: run ufw
+      command: ufw status
+      register: ufw_output
+      when: ansible_os_family == "Debian" and 'ufw' in ansible_facts.packages
+
     - name: Allow mdns through firewall on Debian system
+      # ufw service is a one-shot service to turn on the firewall,
+      # hence it does not continue to run.
+      # Use ufw command output to confirm the firewall state
       community.general.ufw:
         proto: udp
         port: 5353
@@ -62,5 +72,4 @@
       when: >
         ansible_os_family == "Debian" and
         'ufw' in ansible_facts.packages and
-        ansible_facts.services['ufw.service'].state == "running"
-
+        'Status: active' in ufw_output.stdout
