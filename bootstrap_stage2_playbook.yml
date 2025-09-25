@@ -1,0 +1,25 @@
+---
+
+- name: Bootstrap stage 2 (by ansible automation user)
+  hosts: bootstrap_stage_2
+  vars_files: bootstrap_stage2_vault_encrypted.yml
+  become: true
+ 
+  tasks:
+    - name: Install avahi
+      ansible.builtin.package:
+        update_cache: true
+        name:
+          - avahi
+        state: present
+
+    - name: Enable and run avahi
+      ansible.builtin.service:
+        name: avahi-daemon.service
+        enabled: true
+        state: started
+
+    - name: Allow mdns through the firewall
+      ansible.posix.firewalld:
+        service: mdns
+        state: enabled
