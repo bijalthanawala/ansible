@@ -43,14 +43,19 @@
         name:
           - python3-firewall
         state: present
-      when: ansible_os_family == "RedHat" and 'firewalld' in ansible_facts.packages and ansible_facts.services['firewalld.service'].state == "running"
-
+      when: >
+        ansible_os_family == "RedHat" and
+        'firewalld' in ansible_facts.packages and
+        ansible_facts.services['firewalld.service'].state == "running"
 
     - name: Allow mdns through firewall on Redhat system
       ansible.posix.firewalld:
         service: mdns
         state: enabled
-      when: ansible_os_family == "RedHat" and 'firewalld' in ansible_facts.packages and ansible_facts.services['firewalld.service'].state == "running"
+      when: >
+        ansible_os_family == "RedHat" and
+        'firewalld' in ansible_facts.packages and
+        ansible_facts.services['firewalld.service'].state == "running"
 
     - name: Allow mdns through firewall on Debian system
       community.general.ufw:
@@ -58,4 +63,7 @@
         port: 5353
         #rule: allow
         rule: deny
-      when: ansible_os_family == "Debian" and 'ufw' in ansible_facts.packages and ansible_facts.services['ufw.service'].state == "running"
+      when: >
+        ansible_os_family == "Debian" and
+        'ufw' in ansible_facts.packages and
+        ansible_facts.services['ufw.service'].state == "running"
