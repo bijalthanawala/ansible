@@ -6,12 +6,22 @@
   become: true
  
   tasks:
-    - name: Install avahi
+    - name: Install avahi-daemon on Debian system
+      ansible.builtin.package:
+        update_cache: true
+        name:
+          - avahi-daemon
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install avahi Redhat system
       ansible.builtin.package:
         update_cache: true
         name:
           - avahi
         state: present
+      when: ansible_os_family == "RedHat"
+
 
     - name: Enable and run avahi
       ansible.builtin.service:
