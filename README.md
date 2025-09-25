@@ -4,7 +4,7 @@ The purpose of this exercise is to learn ansible while putting it to use in my o
 
 Git logs will also document my improvement journey as this repo will grow from naive compilation of tasks to adopting known best practices.
 
-###  **~[TODO: FOLLOWING INSTRUCTIONS NEEDS A REWRITE AFTER RECENT CHANGES]~**
+###  **[TODO: FOLLOWING INSTRUCTIONS NEEDS A REWRITE AFTER RECENT CHANGES]**
 
 ## Following setup required to use this playbook:
 
