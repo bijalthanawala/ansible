@@ -6,9 +6,12 @@
   become: true
  
   tasks:
-    - name: Install avahi-daemon on Debian system
+    - name: Update package cache
       ansible.builtin.package:
         update_cache: true
+
+    - name: Install avahi-daemon on Debian system
+      ansible.builtin.package:
         name:
           - avahi-daemon
         state: present
@@ -16,7 +19,6 @@
 
     - name: Install avahi on Redhat system
       ansible.builtin.package:
-        update_cache: true
         name:
           - avahi
         state: present
@@ -31,7 +33,6 @@
 
     - name: Install python3 firewall library on Redhat system
       ansible.builtin.package:
-        update_cache: true
         name:
           - python3-firewall
         state: present
