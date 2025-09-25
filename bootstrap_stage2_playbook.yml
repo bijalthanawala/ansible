@@ -58,8 +58,7 @@
       community.general.ufw:
         proto: udp
         port: 5353
-        #rule: allow
-        rule: deny
+        rule: allow
       when: >
         ansible_os_family == "Debian" and
         'ufw' in ansible_facts.packages and
