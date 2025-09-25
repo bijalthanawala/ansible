@@ -14,7 +14,7 @@
         state: present
       when: ansible_os_family == "Debian"
 
-    - name: Install avahi Redhat system
+    - name: Install avahi on Redhat system
       ansible.builtin.package:
         update_cache: true
         name:
@@ -29,7 +29,7 @@
         enabled: true
         state: started
 
-    - name: Install python3 firewall library
+    - name: Install python3 firewall library on Redhat system
       ansible.builtin.package:
         update_cache: true
         name:
