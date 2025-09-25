@@ -1,0 +1,20 @@
+---
+general:
+  hosts:
+    pxmx-rocky-nginx:
+      ansible_host: pxmx-rocky-nginx.local
+      ansible_user: ansible_automation
+      ansible_ssh_password: "{{ ansible_automation_user_password }}"
+      ansible_become_pass: "{{ ansible_automation_user_password }}"
+
+    pxmx-debian-nginx:
+      ansible_host: pxmx-debian-nginx.local
+      ansible_user: ansible_automation
+      ansible_ssh_password: "{{ ansible_automation_user_password }}"
+      ansible_become_pass: "{{ ansible_automation_user_password }}"
+
+    pxmx-nodejs:
+      ansible_host: pxmx-nodejs.local
+      ansible_user: ansible_automation
+      ansible_ssh_password: "{{ ansible_automation_user_password }}"
+      ansible_become_pass: "{{ ansible_automation_user_password }}"

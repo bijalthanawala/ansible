@@ -4,8 +4,6 @@
   hosts: development
   vars_files: development_vault_encrypted.yml
   become: true
-  vars:
-    ansible_become_pass: "{{ development_host_sudo_password }}"
 
   tasks:
     - name: Ensure that essential development packages are installed
@@ -18,32 +16,3 @@
           - tree
           - bc
         state: present
-
-
-- name: Setup pertinent to proxmox
-  hosts: new_proxmox
-  vars_files: development_vault_encrypted.yml
-  become: true
-  vars:
-    ansible_become_pass: "{{ development_host_sudo_password }}"
-
-  tasks:
-    - name: Install avahi and QEMU guest agent
-      ansible.builtin.package:
-        update_cache: true
-        name:
-          - avahi
-          - qemu-guest-agent
-        state: present
-
-    - name: Enable and run avahi
-      ansible.builtin.service:
-        name: avahi-daemon.service
-        enabled: true
-        state: started
-
-    - name: Enable and run QEMU guest agent
-      ansible.builtin.service:
-        name: qemu-guest-agent.service
-        enabled: true
-        state: started

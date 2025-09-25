@@ -1,5 +1,4 @@
 *.swp
-inventory*.ini
-*vault*.yml
+*vault_encrypted*
 vault_password.txt
 

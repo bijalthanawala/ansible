@@ -1,0 +1,20 @@
+---
+
+- name: Setup pertinent to proxmox
+  hosts: all
+  vars_files: general_vault_encrypted.yml
+  become: true
+
+  tasks:
+    - name: Install QEMU guest agent
+      ansible.builtin.package:
+        update_cache: true
+        name:
+          - qemu-guest-agent
+        state: present
+
+    - name: Enable and run QEMU guest agent
+      ansible.builtin.service:
+        name: qemu-guest-agent.service
+        enabled: true
+        state: started
