@@ -31,5 +31,5 @@
     - name: copy ssh public key to the host
       ansible.posix.authorized_key:
         state: present
-        user: ansible
-        key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa.pub') }}"
+        user: "{{ ansible_automation_user }}"
+        key: "{{ lookup('file', lookup('env', 'HOME') + '/.ssh/id_rsa_ansible_automation.pub') }}"
