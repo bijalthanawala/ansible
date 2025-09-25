@@ -31,24 +31,31 @@
         enabled: true
         state: started
 
+    - name: Get the package facts
+      ansible.builtin.package_facts:
+        manager: auto
+
+    - name: Get the service facts
+      ansible.builtin.service_facts:
+
     - name: Install python3 firewall library on Redhat system
       ansible.builtin.package:
         name:
           - python3-firewall
         state: present
-      when: ansible_os_family == "RedHat"
+      when: ansible_os_family == "RedHat" and 'firewalld' in ansible_facts.packages and ansible_facts.services['firewalld.service'].state == "running"
 
 
     - name: Allow mdns through firewall on Redhat system
       ansible.posix.firewalld:
         service: mdns
         state: enabled
-      when: ansible_os_family == "RedHat"
-
+      when: ansible_os_family == "RedHat" and 'firewalld' in ansible_facts.packages and ansible_facts.services['firewalld.service'].state == "running"
 
     - name: Allow mdns through firewall on Debian system
       community.general.ufw:
         proto: udp
         port: 5353
-        rule: allow
-      when: ansible_os_family == "Debian"
+        #rule: allow
+        rule: deny
+      when: ansible_os_family == "Debian" and 'ufw' in ansible_facts.packages and ansible_facts.services['ufw.service'].state == "running"
