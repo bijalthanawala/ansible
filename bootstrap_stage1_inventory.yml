@@ -15,7 +15,7 @@ bootstrap_stage_1:
       ansible_become_pass: "{{boot_user_debian_password}}"
       ansible_automation_user: ansible_automation
 
-    pxmx-nodejs-nginx:
+    pxmx-nodejs:
       ansible_host: 192.168.206.177
       ansible_user: "{{boot_user_debian}}"
       ansible_ssh_password: "{{boot_user_debian_password}}"
