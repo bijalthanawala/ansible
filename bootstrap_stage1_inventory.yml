@@ -1,0 +1,23 @@
+---
+bootstrap_stage_1:
+  hosts:
+    pxmx-rocky-nginx:
+      ansible_host: 192.168.238.226
+      ansible_user: "{{boot_user_rocky}}"
+      ansible_ssh_password: "{{boot_user_rocky_password}}"
+      ansible_become_pass: "{{boot_user_rocky_password}}"
+      ansible_automation_user: ansible_automation
+
+    pxmx-debian-nginx:
+      ansible_host: 192.168.227.36
+      ansible_user: "{{boot_user_debian}}"
+      ansible_ssh_password: "{{boot_user_debian_password}}"
+      ansible_become_pass: "{{boot_user_debian_password}}"
+      ansible_automation_user: ansible_automation
+
+    pxmx-nodejs-nginx:
+      ansible_host: 192.168.206.177
+      ansible_user: "{{boot_user_debian}}"
+      ansible_ssh_password: "{{boot_user_debian_password}}"
+      ansible_become_pass: "{{boot_user_debian_password}}"
+      ansible_automation_user: ansible_automation
