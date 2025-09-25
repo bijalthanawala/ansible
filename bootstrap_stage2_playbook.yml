@@ -35,6 +35,8 @@
         name:
           - python3-firewall
         state: present
+      when: ansible_os_family == "RedHat"
+
 
     - name: Allow mdns through the firewall
       ansible.posix.firewalld:
