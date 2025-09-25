@@ -12,6 +12,7 @@
         name: ansible
         state: present
         create_home: true
+        password: $6$dtfj/z.ivsu$pcLKADHR5HbSkXxYvD/22BUr6mfix1R.B2rhj4tpLTk2CQR8mnzXCwosEGehqpsg/BVKNOpSy.OVZ0WZ4CdFT1
 
     - name: Add user 'ansible' to the sudo group
       ansible.builtin.user:
