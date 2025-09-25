@@ -1,7 +1,7 @@
 ---
 
 - name: prepare new hosts for ansible automation
-  hosts: bootstrap
+  hosts: bootstrap_stage_1
   vars_files: bootstrap_stage1_vault_encrypted.yml
   become: true
 
