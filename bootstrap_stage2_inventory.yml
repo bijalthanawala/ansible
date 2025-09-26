@@ -4,17 +4,14 @@ bootstrap_stage_2:
     pxmx-rocky-nginx:
       ansible_host: 192.168.238.226
       ansible_user: ansible_automation
-      ansible_ssh_password: "{{ ansible_automation_user_password }}"
       ansible_become_pass: "{{ ansible_automation_user_password }}"
 
     pxmx-debian-nginx:
       ansible_host: 192.168.227.36
       ansible_user: ansible_automation
-      ansible_ssh_password: "{{ ansible_automation_user_password }}"
       ansible_become_pass: "{{ ansible_automation_user_password }}"
 
     pxmx-nodejs:
       ansible_host: 192.168.206.177
       ansible_user: ansible_automation
-      ansible_ssh_password: "{{ ansible_automation_user_password }}"
       ansible_become_pass: "{{ ansible_automation_user_password }}"
