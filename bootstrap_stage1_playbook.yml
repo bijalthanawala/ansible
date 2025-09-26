@@ -11,7 +11,8 @@
       ansible.builtin.user:
         name: "{{ ansible_automation_user }}"
         state: present
-        create_home: true
+        create_home: false
+        system: true
         password: $6$b8k/j3r9s$et5KRlBaf.apQ1sYjraVPxCKg6Y/IBUGyrexuxVHB5GbxmJVPs3rr6NEHaEd6F8sagFifxAZ1Zez1ace6Jcdr/
 
     - name: Add ansible automation user to the sudo group
